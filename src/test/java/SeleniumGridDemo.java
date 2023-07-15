@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -28,7 +29,8 @@ public class SeleniumGridDemo {
     public void setUp(String browser) throws MalformedURLException {
         switch (browser){
             case "chrome":
-
+                ChromeOptions co = new ChromeOptions();
+                co.addArguments("--headless");
                 driver = new ChromeDriver();
 
 //               DesiredCapabilities cap1 = new DesiredCapabilities();
