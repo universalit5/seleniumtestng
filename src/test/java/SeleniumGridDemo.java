@@ -29,7 +29,7 @@ public class SeleniumGridDemo {
     public void setUp(String browser) throws MalformedURLException {
         switch (browser){
             case "chrome":
-                WebDriverManager.chromedriver().setup();
+
                 driver = new ChromeDriver();
 
 //               DesiredCapabilities cap1 = new DesiredCapabilities();
@@ -42,7 +42,7 @@ public class SeleniumGridDemo {
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 break;
             case "firefox":
-                WebDriverManager.firefoxdriver().setup();
+
                driver = new FirefoxDriver();
 
 //                DesiredCapabilities cap2 = new DesiredCapabilities();
@@ -54,7 +54,7 @@ public class SeleniumGridDemo {
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 break;
             case "edge":
-                WebDriverManager.edgedriver().setup();
+
                driver = new EdgeDriver();
 
 //                DesiredCapabilities cap3 = new DesiredCapabilities();
