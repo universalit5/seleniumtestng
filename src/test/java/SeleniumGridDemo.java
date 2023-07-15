@@ -31,7 +31,7 @@ public class SeleniumGridDemo {
             case "chrome":
                 ChromeOptions co = new ChromeOptions();
                 co.addArguments("--headless");
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(co);
 
 //               DesiredCapabilities cap1 = new DesiredCapabilities();
 //                cap1.setBrowserName(browser);
@@ -74,6 +74,7 @@ public class SeleniumGridDemo {
     @Test
     public void testLinks(){
        driver.get("https://www.bbc.co.uk");
+        System.out.println("bor");
        WebElement e = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[3]/div/div[3]/div/div[2]/div/div[1]/a"));
         System.out.println(e.getText());
         System.out.println(driver.getCurrentUrl());
