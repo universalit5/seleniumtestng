@@ -8,15 +8,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.AssertJUnit.assertTrue;
@@ -26,29 +22,22 @@ public class SeleniumGridDemo {
 
     @BeforeMethod
     @Parameters("browser")
-    public void setUp(String browser) throws MalformedURLException {
+    public void setUp(String browser)  {
+        boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless"));
         switch (browser){
             case "chrome":
                 ChromeOptions co = new ChromeOptions();
-                co.addArguments("--headless");
+                co.setHeadless(isHeadless);
                 driver = new ChromeDriver(co);
-
-//               DesiredCapabilities cap1 = new DesiredCapabilities();
-//                cap1.setBrowserName(browser);
-//               // cap1.setCapability("browserName","chrome");
-//                driver = new RemoteWebDriver(new URL("http://18.212.26.204:4444/wd/hub"),cap1);
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
                 driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 break;
             case "firefox":
-
-               driver = new FirefoxDriver();
-
-//                DesiredCapabilities cap2 = new DesiredCapabilities();
-//                cap2.setBrowserName(browser);
-//                driver = new RemoteWebDriver(new URL("http://18.212.26.204:4444/wd/hub"),cap2);
+                FirefoxOptions fo = new FirefoxOptions();
+                fo.setHeadless(isHeadless);
+                driver = new FirefoxDriver(fo);
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
                 driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
@@ -57,10 +46,6 @@ public class SeleniumGridDemo {
             case "edge":
 
                driver = new EdgeDriver();
-
-//                DesiredCapabilities cap3 = new DesiredCapabilities();
-//                cap3.setBrowserName(browser);
-//                driver = new RemoteWebDriver(new URL("http://18.212.26.204:4444/wd/hub"),cap3);
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
                 driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
