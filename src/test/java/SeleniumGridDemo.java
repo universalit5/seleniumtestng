@@ -27,7 +27,8 @@ public class SeleniumGridDemo {
         boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless"));
         switch (browser){
             case "chrome":
-                WebDriverManager.chromedriver().setup();
+                System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver");
+
                 ChromeOptions co = new ChromeOptions();
                 co.setHeadless(isHeadless);
                 driver = new ChromeDriver(co);
