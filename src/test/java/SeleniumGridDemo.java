@@ -1,6 +1,6 @@
 
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,28 +27,24 @@ public class SeleniumGridDemo {
         boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless"));
         switch (browser){
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver");
 
-                ChromeOptions co = new ChromeOptions();
-                co.setHeadless(isHeadless);
-                driver = new ChromeDriver(co);
+
+                driver = new ChromeDriver();
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
                 driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 break;
             case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                FirefoxOptions fo = new FirefoxOptions();
-                fo.setHeadless(isHeadless);
-                driver = new FirefoxDriver(fo);
+
+                driver = new FirefoxDriver();
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
                 driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 break;
             case "edge":
-                WebDriverManager.edgedriver().setup();
+
                driver = new EdgeDriver();
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
