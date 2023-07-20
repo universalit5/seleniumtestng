@@ -29,7 +29,7 @@ public class SeleniumGridDemo {
             case "chrome":
                 System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
                 ChromeOptions options = new ChromeOptions();
-                options.setAcceptInsecureCerts(true);
+                options.setHeadless(isHeadless);
                 driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
