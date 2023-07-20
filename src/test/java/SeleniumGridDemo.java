@@ -27,9 +27,10 @@ public class SeleniumGridDemo {
         boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless"));
         switch (browser){
             case "chrome":
-
-
-                driver = new ChromeDriver();
+                System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
+                ChromeOptions options = new ChromeOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
                 driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
