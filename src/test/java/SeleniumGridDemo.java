@@ -20,11 +20,12 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class SeleniumGridDemo {
     WebDriver driver ;
+    boolean isHeadless;
 
     @BeforeMethod
     @Parameters("browser")
     public void setUp(String browser)  {
-        boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless"));
+        isHeadless = Boolean.parseBoolean(System.getProperty("headless"));
         switch (browser){
             case "chrome":
 
@@ -66,9 +67,10 @@ public class SeleniumGridDemo {
     public void testLinks() throws InterruptedException {
        driver.get("https://www.bbc.co.uk");
         System.out.println("bor");
-        Thread.sleep(5000);
-       WebElement e = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[3]/div/div[3]/div/div[2]/div/div[1]/a"));
-        System.out.println(e.getText());
+       // Thread.sleep(5000);
+      // WebElement e = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[3]/div/div[3]/div/div[2]/div/div[1]/a"));
+       WebElement e1 = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[2]/div/div/ul/li[1]/div/div/div[1]/div[1]/a")) ;
+       System.out.println(e1.getText());
         System.out.println(driver.getCurrentUrl());
        assertTrue(driver.getCurrentUrl().contains("bbc"));
     }
