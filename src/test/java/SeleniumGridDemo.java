@@ -27,17 +27,22 @@ public class SeleniumGridDemo {
         boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless"));
         switch (browser){
             case "chrome":
-                System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
+
                 ChromeOptions options = new ChromeOptions();
-                options.setHeadless(isHeadless);
+               // options.addArguments("--headless");
+                 options.setHeadless(isHeadless);
                 driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
+
                 driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 break;
             case "firefox":
-
+                FirefoxOptions options2 = new FirefoxOptions();
+                // options.addArguments("--headless");
+                options2.setHeadless(isHeadless);
+                driver = new FirefoxDriver(options2);
                 driver = new FirefoxDriver();
                 driver.manage().window().maximize();
                 driver.manage().deleteAllCookies();
@@ -58,9 +63,10 @@ public class SeleniumGridDemo {
     }
 
     @Test
-    public void testLinks(){
+    public void testLinks() throws InterruptedException {
        driver.get("https://www.bbc.co.uk");
         System.out.println("bor");
+        Thread.sleep(5000);
        WebElement e = driver.findElement(By.xpath("//*[@id=\"main-content\"]/div[3]/div/div[3]/div/div[2]/div/div[1]/a"));
         System.out.println(e.getText());
         System.out.println(driver.getCurrentUrl());
